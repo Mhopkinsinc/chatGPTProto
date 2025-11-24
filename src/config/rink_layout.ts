@@ -3,7 +3,7 @@
 
 export const RINK_LAYOUT = {
   width: 384,           // Total width in pixels
-  height: 480,          // Total height in pixels
+  height: 680,          // Total height in pixels
   center: { x: 0, y: 0 }, // Center ice faceoff dot
 
   xMin: -192,           // Left edge
