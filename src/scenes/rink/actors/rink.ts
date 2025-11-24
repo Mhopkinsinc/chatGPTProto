@@ -5,8 +5,8 @@ import { Resources } from '../../../resources';
 export class RinkActor extends ex.Actor {
     constructor(width: number, height: number) {
         super({
-            x: width / 2,
-            y: height / 2,
+            x: 0, // Centered at (0,0)
+            y: 0,
             width,
             height,
             anchor: ex.Vector.Half,

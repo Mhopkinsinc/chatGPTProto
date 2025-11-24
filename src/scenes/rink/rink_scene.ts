@@ -1,10 +1,8 @@
 import * as ex from 'excalibur';
-
 import { RinkActor } from './actors/rink';
 import { BoardsActor } from './actors/boards';
 import { PuckActor } from './actors/puck';
 import { CameraControllerActor } from './actors/cameracontroller';
-
 import { getResolutionProfile } from '../../config/resolution';
 import { Resources } from '../../resources';
 import { RINK_LAYOUT } from '../../config/rink_layout';
@@ -27,8 +25,8 @@ export class RinkScene extends ex.Scene {
         this.add(this.puck);
 
         const cameraController = new CameraControllerActor(this.puck);
-        this.add(cameraController);
-
-        this.camera.pos = new ex.Vector(internalWidth / 2, internalHeight / 2);
+        this.add(cameraController);        
     }
+
+    // ...existing code...
 }

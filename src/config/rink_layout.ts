@@ -6,10 +6,10 @@ export const RINK_LAYOUT = {
   height: 680,          // Total height in pixels
   center: { x: 0, y: 0 }, // Center ice faceoff dot
 
-  xMin: -192,           // Left edge
-  xMax: 192,            // Right edge
-  yMin: -240,           // Bottom edge
-  yMax: 240,            // Top edge
+  xMin: 0,           // Left edge
+  xMax: 384,            // Right edge
+  yMin: 0,           // Bottom edge
+  yMax: 680,            // Top edge
 
   bluelineTopY: 88,     // Y position of top blueline
   bluelineBottomY: -88, // Y position of bottom blueline
