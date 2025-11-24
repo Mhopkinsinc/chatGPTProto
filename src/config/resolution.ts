@@ -55,7 +55,7 @@ const RESOLUTION_PROFILES: Record<ResolutionId, ResolutionProfile> = {
  * Active profile (defaults to Genesis).
  * This is the currently applied global resolution.
  */
-let activeProfile: ResolutionProfile = RESOLUTION_PROFILES[ResolutionId.GenesisWidescreen];
+let activeProfile: ResolutionProfile = RESOLUTION_PROFILES[ResolutionId.Genesis];
 
 /**
  * Set the active global resolution.

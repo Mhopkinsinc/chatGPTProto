@@ -26,7 +26,5 @@ export class RinkScene extends ex.Scene {
 
         const cameraController = new CameraControllerActor(this.puck);
         this.add(cameraController);        
-    }
-
-    // ...existing code...
+    }    
 }
