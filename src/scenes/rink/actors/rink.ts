@@ -1,4 +1,6 @@
+
 import * as ex from 'excalibur';
+import { Resources } from '../../../resources';
 
 export class RinkActor extends ex.Actor {
     constructor(width: number, height: number) {
@@ -7,8 +9,12 @@ export class RinkActor extends ex.Actor {
             y: height / 2,
             width,
             height,
-            color: ex.Color.fromHex('#98d8ff'),
+            anchor: ex.Vector.Half,
             collisionType: ex.CollisionType.PreventCollision
         });
+    }
+
+    public onInitialize() {
+        this.graphics.use(Resources.rinkBg.toSprite());
     }
 }

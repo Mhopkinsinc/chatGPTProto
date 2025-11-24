@@ -15,17 +15,6 @@ export class RinkScene extends ex.Scene {
         const profile = getResolutionProfile();
         const { internalWidth, internalHeight } = profile;
 
-        // Add background image actor
-        const bg = new ex.Actor({
-            x: internalWidth / 2,
-            y: internalHeight / 2,
-            width: internalWidth,
-            height: internalHeight,
-            anchor: ex.Vector.Half
-        });
-        bg.graphics.use(Resources.rinkBg.toSprite());
-        this.add(bg);
-
         const rink = new RinkActor(internalWidth, internalHeight);
         this.add(rink);
 
