@@ -37,7 +37,7 @@ export class PuckActor extends ex.Actor {
 
     // Shadow sprite at frame (0,0)
     this.shadowSprite = this.spriteSheet.getSprite(0, 0).clone();
-    this.shadowSprite.opacity = 0.5;
+    
 
     // Idle sprite at frame (0,1)
     this.idleSprite = this.spriteSheet.getSprite(1, 0);
@@ -49,7 +49,7 @@ export class PuckActor extends ex.Actor {
     // Graphics group for idle (shadow slightly below puck)
     this.idleGraphic = new ex.GraphicsGroup({
       members: [
-        { graphic: this.shadowSprite, offset: ex.vec(0, 1) }, // try 10 or 20 to test
+        { graphic: this.shadowSprite, offset: ex.vec(-1, -1) }, // try 10 or 20 to test
         { graphic: this.idleSprite, offset: ex.vec(0, 0) }
       ]
     });
@@ -57,7 +57,7 @@ export class PuckActor extends ex.Actor {
     // Graphics group for flip (shadow slightly below puck)
     this.flipGraphic = new ex.GraphicsGroup({
       members: [
-        { graphic: this.shadowSprite, offset: ex.vec(0, 1) },
+        { graphic: this.shadowSprite, offset: ex.vec(0, -1) },
         { graphic: this.flipAnim, offset: ex.vec(0, 0) }
       ]
     });
