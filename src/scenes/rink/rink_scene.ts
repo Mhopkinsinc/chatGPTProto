@@ -6,6 +6,7 @@ import { PuckActor } from './actors/puck';
 import { CameraControllerActor } from './actors/cameracontroller';
 
 import { getResolutionProfile } from '../../config/resolution';
+import { Resources } from '../../resources';
 
 export class RinkScene extends ex.Scene {
     private puck!: PuckActor;
@@ -13,6 +14,17 @@ export class RinkScene extends ex.Scene {
     public onInitialize(engine: ex.Engine): void {
         const profile = getResolutionProfile();
         const { internalWidth, internalHeight } = profile;
+
+        // Add background image actor
+        const bg = new ex.Actor({
+            x: internalWidth / 2,
+            y: internalHeight / 2,
+            width: internalWidth,
+            height: internalHeight,
+            anchor: ex.Vector.Half
+        });
+        bg.graphics.use(Resources.rinkBg.toSprite());
+        this.add(bg);
 
         const rink = new RinkActor(internalWidth, internalHeight);
         this.add(rink);
