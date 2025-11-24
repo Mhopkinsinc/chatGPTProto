@@ -4,8 +4,6 @@ import { RinkScene } from './scenes/rink/rink_scene';
 import { loader } from './resources';
 import { applyBestIntegerScale, getResolutionProfile } from './config/resolution';
 
-
-
 const profile = getResolutionProfile();
 const gameEngine = new ex.Engine({
   width: profile.internalWidth,
@@ -15,7 +13,6 @@ const gameEngine = new ex.Engine({
   pixelArt: true,
   suppressHiDPIScaling: true
 });
-
 
 // Apply best integer scale using the resolution config logic
 applyBestIntegerScale(gameEngine);
