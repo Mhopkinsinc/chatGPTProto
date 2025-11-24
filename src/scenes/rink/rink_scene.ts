@@ -7,6 +7,7 @@ import { CameraControllerActor } from './actors/cameracontroller';
 
 import { getResolutionProfile } from '../../config/resolution';
 import { Resources } from '../../resources';
+import { RINK_LAYOUT } from '../../config/rink_layout';
 
 export class RinkScene extends ex.Scene {
     private puck!: PuckActor;
@@ -18,10 +19,11 @@ export class RinkScene extends ex.Scene {
         const rink = new RinkActor(internalWidth, internalHeight);
         this.add(rink);
 
-        const boards = new BoardsActor(internalWidth, internalHeight);
-        this.add(boards);
+        //const boards = new BoardsActor(internalWidth, internalHeight);
+        //this.add(boards);
 
-        this.puck = new PuckActor(internalWidth / 2, internalHeight / 2);
+        // Place puck at center ice using rink layout spec
+        this.puck = new PuckActor(RINK_LAYOUT.center.x, RINK_LAYOUT.center.y);
         this.add(this.puck);
 
         const cameraController = new CameraControllerActor(this.puck);
