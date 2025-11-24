@@ -115,6 +115,9 @@ export function applyBestIntegerScale(engine: ex.Engine) {
 
     if (scale < 1) scale = 1;
 
+    // Update the active profile's scale so getDisplaySize() returns correct value
+    profile.scale = scale;
+
     const viewportWidth = internalW * scale;
     const viewportHeight = internalH * scale;
 
