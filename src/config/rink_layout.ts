@@ -1,20 +1,19 @@
 // src/config/rink_layout.ts
-// Rink layout specification for camera, actors, collision, etc.
-
 export const RINK_LAYOUT = {
-  width: 384,           // Total width in pixels
-  height: 680,          // Total height in pixels
-  center: { x: 0, y: 0 }, // Center ice faceoff dot
+  width: 384,
+  height: 680,
+  center: { x: 0, y: 0 }, // Center ice is now world origin!
 
-  xMin: 0,           // Left edge
-  xMax: 384,            // Right edge
-  yMin: 0,           // Bottom edge
-  yMax: 680,            // Top edge
+  // World coordinate bounds (adjusted for offset)
+  xMin: -192 + 4,   // -188
+  xMax: 192 + 4,    // 196
+  yMin: -340 - 22,  // -362
+  yMax: 340 - 22,   // 318
 
-  bluelineTopY: 88,     // Y position of top blueline
-  bluelineBottomY: -88, // Y position of bottom blueline
-
-  sideboardX: 136,      // X position of sideboards (left/right)
-  goalTopY: 240,        // Y position of top goal
-  goalBottomY: -240     // Y position of bottom goal
+  // Adjust other landmarks as needed
+  bluelineTopY: -88 - 22,
+  bluelineBottomY: 88 - 22,
+  sideboardX: 136,
+  goalTopY: -240 - 22,
+  goalBottomY: 240 - 22
 };

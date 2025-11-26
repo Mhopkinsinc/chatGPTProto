@@ -1,6 +1,7 @@
 // src/scenes/rink/actors/puck.ts
 import * as ex from 'excalibur';
 import { Resources } from '../../../resources';
+import { RinkScene } from '../rink_scene';
 
 export class PuckActor extends ex.Actor {
   private speed = 150;
@@ -71,8 +72,7 @@ export class PuckActor extends ex.Actor {
     this.body.mass = 0.5;
   }
 
-  public onPreUpdate(engine: ex.Engine): void {
-    // ...existing code...
+  public onPreUpdate(engine: ex.Engine): void {    
 
     const kb = engine.input.keyboard;
     const move = new ex.Vector(0, 0);
@@ -84,12 +84,32 @@ export class PuckActor extends ex.Actor {
     if (kb.isHeld(ex.Keys.Right)) move.x += 1;
 
     if (move.size > 0) {
-      this.vel = move.normalize().scale(this.speed); // Move puck
-      this.graphics.use(this.flipGraphic);           // Show flip animation + shadow
-    } else {
-      this.vel = this.vel.scale(0.9);                // Apply friction
-      if (this.vel.size < 5) this.graphics.use(this.idleGraphic); // Return to idle
+    this.vel = move.normalize().scale(this.speed);
+    this.graphics.use(this.flipGraphic);
+
+    // Tell camera which direction we're attacking
+    const scene = engine.currentScene;
+    //console.log('Scene:', scene);
+    //console.log('Scene constructor:', scene?.constructor?.name);
+    
+    const rinkScene = scene as RinkScene;
+    console.log('getCameraController:', rinkScene.getCameraController);
+    
+    const camController = rinkScene.getCameraController?.();
+    //console.log('camController:', camController);
+    
+    if (camController) {
+        if (move.y < 0) {
+            camController.setAttackingTopGoal(true);
+        } else if (move.y > 0) {
+            camController.setAttackingTopGoal(false);
+        }
     }
+} else {
+    this.vel = this.vel.scale(0.9);
+    if (this.vel.size < 5) this.graphics.use(this.idleGraphic);
+}
+   
   }
 
   public onPostUpdate(_engine: ex.Engine): void {
