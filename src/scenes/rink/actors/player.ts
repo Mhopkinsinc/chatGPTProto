@@ -8,15 +8,16 @@ export class PlayerActor extends ex.Actor {
     private idleSprite!: ex.Sprite;
 
     constructor(x: number, y: number) {
-     super({
-       x,
-       y,
-       width: 16,
-       height: 32,
-       collisionType: ex.CollisionType.Active,
-       anchor: ex.vec(1, 1)
-     });
-   }
+      super({
+        x,
+        y,
+        width: 16,
+        height: 32,
+        collisionType: ex.CollisionType.Active,
+        anchor: ex.vec(1, 1),
+        name: 'PlayerActor'
+      });
+    }
 
     public onInitialize() {
           // Create spritesheet (1 row, 5 columns, 32x32 each)
