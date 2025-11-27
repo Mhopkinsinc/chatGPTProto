@@ -16,7 +16,7 @@ export class CameraControllerActor extends ex.Actor {
     private attackingTopGoal = false;
 
     constructor(private target: PuckActor) {
-        super({ x: 0, y: 0 });
+        super({ x: 0, y: 0, name: 'CameraControllerActor' });
     }
 
     public setAttackingTopGoal(attacking: boolean): void {

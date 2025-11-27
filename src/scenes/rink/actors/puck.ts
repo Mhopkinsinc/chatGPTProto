@@ -22,7 +22,8 @@ export class PuckActor extends ex.Actor {
       width: 8,
       height: 8,
       collisionType: ex.CollisionType.Active,
-      anchor: ex.vec(0, 0)
+      anchor: ex.vec(0, 0),
+      name: 'PuckActor'
     });
   }
 

@@ -5,7 +5,7 @@ export class BoardsActor extends ex.Actor {
         private rinkWidth: number,
         private rinkHeight: number
     ) {
-        super({ x: 0, y: 0 });
+        super({ x: 0, y: 0, name: 'BoardsActor' });
     }
 
     public onInitialize(engine: ex.Engine): void {

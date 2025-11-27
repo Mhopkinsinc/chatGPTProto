@@ -14,7 +14,8 @@ export class RinkActor extends ex.Actor {
             width,
             height,
             anchor: ex.Vector.Half,
-            collisionType: ex.CollisionType.PreventCollision
+            collisionType: ex.CollisionType.PreventCollision,
+            name: 'RinkActor'
         });
     }
 
