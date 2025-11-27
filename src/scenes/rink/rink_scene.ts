@@ -5,10 +5,12 @@ import { PuckActor } from './actors/puck';
 import { CameraControllerActor } from './actors/cameracontroller';
 import { getResolutionProfile } from '../../config/resolution';
 import { RINK_LAYOUT } from '../../config/rink_layout';
+import { PlayerActor } from './actors/player';
 
 export class RinkScene extends ex.Scene {
     private puck: PuckActor;
     private cameraController: CameraControllerActor;
+    private player: PlayerActor;
 
     constructor() {
         super();
@@ -18,6 +20,9 @@ export class RinkScene extends ex.Scene {
 
         const rink = new RinkActor(internalWidth, internalHeight);
         this.add(rink);
+
+        this.player = new PlayerActor(RINK_LAYOUT.center.x, RINK_LAYOUT.center.y);
+        this.add(this.player);
 
         this.puck = new PuckActor(RINK_LAYOUT.center.x, RINK_LAYOUT.center.y);
         this.add(this.puck);

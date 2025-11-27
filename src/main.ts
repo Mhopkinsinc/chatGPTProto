@@ -14,6 +14,8 @@ const gameEngine = new ex.Engine({
   suppressHiDPIScaling: true
 });
 
+gameEngine.toggleDebug()
+
 // Apply best integer scale using the resolution config logic
 applyBestIntegerScale(gameEngine);
 window.addEventListener('resize', () => applyBestIntegerScale(gameEngine));
