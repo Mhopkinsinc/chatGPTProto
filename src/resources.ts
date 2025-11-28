@@ -6,7 +6,8 @@ export const Resources = {
   puck: new ex.ImageSource('./images/puck.png'),
   rinkBg: new ex.ImageSource('./images/rink_full_map.png'),
   playerup: new ex.ImageSource('./images/player_up.png'),
-  playerdown: new ex.ImageSource('./images/player_down.png')
+  playerdown: new ex.ImageSource('./images/player_down.png'),
+  topNet: new ex.ImageSource('./images/top_net.png')
 };
 
 export const loader = new ex.Loader();

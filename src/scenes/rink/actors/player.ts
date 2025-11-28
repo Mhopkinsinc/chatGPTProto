@@ -18,7 +18,7 @@ export class PlayerActor extends ex.Actor {
         width: 16,
         height: 32,
         collisionType: ex.CollisionType.Active,
-        anchor: ex.vec(1, 1),
+        anchor: ex.vec(0, 0),
         name: 'PlayerActor'
       });
     }
