@@ -70,23 +70,28 @@ export class PlayerActor extends ex.Actor {
 
         if (move.size > 0) {
           this.vel = move.normalize().scale(speed);
-          // Switch animation based on vertical movement
-          if (move.y < 0 && this.currentDirection !== 'up') {
+          // Always set running animation when moving
+          if (move.y < 0) {
             this.graphics.use(runAnimUp);
             this.currentDirection = 'up';
-          } else if (move.y > 0 && this.currentDirection !== 'down') {
+          } else if (move.y > 0) {
             this.graphics.use(runAnimDown);
             this.currentDirection = 'down';
+          } else {
+            // If moving horizontally, keep last vertical direction's animation
+            if (this.currentDirection === 'up') {
+              this.graphics.use(runAnimUp);
+            } else {
+              this.graphics.use(runAnimDown);
+            }
           }
         } else {
           this.vel = this.vel.scale(0.8);
-          // Idle sprite based on last direction
-          if (this.vel.size < 5) {
-            if (this.currentDirection === 'up') {
-              this.graphics.use(this.idleSpriteUp);
-            } else {
-              this.graphics.use(this.idleSpriteDown);
-            }
+          // Only show idle sprite when NO keyboard input
+          if (this.currentDirection === 'up') {
+            this.graphics.use(this.idleSpriteUp);
+          } else {
+            this.graphics.use(this.idleSpriteDown);
           }
         }
       });
