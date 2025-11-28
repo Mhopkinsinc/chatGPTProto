@@ -7,12 +7,14 @@ import { getResolutionProfile } from '../../config/resolution';
 import { RINK_LAYOUT } from '../../config/rink_layout';
 import { PlayerActor } from './actors/player';
 import { NetActor } from './actors/net';
+import { BottomNetActor } from './actors/bottom_net';
 
 export class RinkScene extends ex.Scene {
     private puck: PuckActor;
     private cameraController: CameraControllerActor;
     private player: PlayerActor;
     private net: NetActor;
+    private bottomNet: BottomNetActor;
 
     constructor() {
         super();
@@ -35,6 +37,10 @@ export class RinkScene extends ex.Scene {
         // Add top net at (0,0)
         this.net = new NetActor(-21, -284);
         this.add(this.net);
+
+        // Add bottom net at (0,0) for now
+        this.bottomNet = new BottomNetActor(-20, 248);
+        this.add(this.bottomNet);
     }
 
     public getCameraController(): CameraControllerActor {
