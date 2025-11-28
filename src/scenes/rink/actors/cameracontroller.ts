@@ -1,6 +1,6 @@
 // src/scenes/rink/actors/cameracontroller.ts
 import * as ex from 'excalibur';
-import { PuckActor } from './puck';
+// import { PuckActor } from './puck';
 import { RINK_LAYOUT } from '../../../config/rink_layout';
 
 export class CameraControllerActor extends ex.Actor {
@@ -15,7 +15,7 @@ export class CameraControllerActor extends ex.Actor {
     // Which goal is being attacked: true = top goal, false = bottom goal
     private attackingTopGoal = false;
 
-    constructor(private target: PuckActor) {
+    constructor(private target: ex.Actor) {
         super({ x: 0, y: 0, name: 'CameraControllerActor' });
     }
 
@@ -28,7 +28,13 @@ export class CameraControllerActor extends ex.Actor {
 
         const scene = engine.currentScene;
         const cam = scene.camera;
-        const targetPos = this.target.getExactPos();
+        // Use getExactPos() if available, otherwise fallback to .pos
+        let targetPos: ex.Vector;
+        if (typeof (this.target as any).getExactPos === 'function') {
+            targetPos = (this.target as any).getExactPos();
+        } else {
+            targetPos = this.target.pos;
+        }
         const currentPos = cam.pos;
 
         // Update yLeader based on which goal is being attacked

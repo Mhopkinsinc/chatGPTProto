@@ -76,27 +76,27 @@ export class PuckActor extends ex.Actor {
 
   public onPreUpdate(engine: ex.Engine): void {    
 
-    const move = getMovementVector(engine);
+    // const move = getMovementVector(engine);
 
-    if (move.size > 0) {
-      this.vel = move.normalize().scale(this.speed);
-      this.graphics.use(this.flipGraphic);
+    // if (move.size > 0) {
+    //   this.vel = move.normalize().scale(this.speed);
+    //   this.graphics.use(this.flipGraphic);
 
-      // Tell camera which direction we're attacking
-      const scene = engine.currentScene;
-      const rinkScene = scene as RinkScene;
-      const camController = rinkScene.getCameraController?.();
-      if (camController) {
-        if (move.y < 0) {
-          camController.setAttackingTopGoal(true);
-        } else if (move.y > 0) {
-          camController.setAttackingTopGoal(false);
-        }
-      }
-    } else {
-      this.vel = this.vel.scale(0.9);
-      if (this.vel.size < 5) this.graphics.use(this.idleGraphic);
-    }
+    //   // Tell camera which direction we're attacking
+    //   const scene = engine.currentScene;
+    //   const rinkScene = scene as RinkScene;
+    //   const camController = rinkScene.getCameraController?.();
+    //   if (camController) {
+    //     if (move.y < 0) {
+    //       camController.setAttackingTopGoal(true);
+    //     } else if (move.y > 0) {
+    //       camController.setAttackingTopGoal(false);
+    //     }
+    //   }
+    // } else {
+    //   this.vel = this.vel.scale(0.9);
+    //   if (this.vel.size < 5) this.graphics.use(this.idleGraphic);
+    // }
    
   }
 

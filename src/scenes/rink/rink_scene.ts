@@ -27,7 +27,7 @@ export class RinkScene extends ex.Scene {
         this.puck = new PuckActor(RINK_LAYOUT.center.x, RINK_LAYOUT.center.y);
         this.add(this.puck);
 
-        this.cameraController = new CameraControllerActor(this.puck);
+        this.cameraController = new CameraControllerActor(this.player);
         this.add(this.cameraController);
     }
 
