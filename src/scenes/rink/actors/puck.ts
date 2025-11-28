@@ -2,6 +2,7 @@
 import * as ex from 'excalibur';
 import { Resources } from '../../../resources';
 import { RinkScene } from '../rink_scene';
+import { getMovementVector } from './input_controller';
 
 export class PuckActor extends ex.Actor {
   private speed = 150;
@@ -75,41 +76,27 @@ export class PuckActor extends ex.Actor {
 
   public onPreUpdate(engine: ex.Engine): void {    
 
-    const kb = engine.input.keyboard;
-    const move = new ex.Vector(0, 0);
-
-    // Keyboard control
-    if (kb.isHeld(ex.Keys.Up)) move.y -= 1;
-    if (kb.isHeld(ex.Keys.Down)) move.y += 1;
-    if (kb.isHeld(ex.Keys.Left)) move.x -= 1;
-    if (kb.isHeld(ex.Keys.Right)) move.x += 1;
+    const move = getMovementVector(engine);
 
     if (move.size > 0) {
-    this.vel = move.normalize().scale(this.speed);
-    this.graphics.use(this.flipGraphic);
+      this.vel = move.normalize().scale(this.speed);
+      this.graphics.use(this.flipGraphic);
 
-    // Tell camera which direction we're attacking
-    const scene = engine.currentScene;
-    //console.log('Scene:', scene);
-    //console.log('Scene constructor:', scene?.constructor?.name);
-    
-    const rinkScene = scene as RinkScene;
-    console.log('getCameraController:', rinkScene.getCameraController);
-    
-    const camController = rinkScene.getCameraController?.();
-    //console.log('camController:', camController);
-    
-    if (camController) {
+      // Tell camera which direction we're attacking
+      const scene = engine.currentScene;
+      const rinkScene = scene as RinkScene;
+      const camController = rinkScene.getCameraController?.();
+      if (camController) {
         if (move.y < 0) {
-            camController.setAttackingTopGoal(true);
+          camController.setAttackingTopGoal(true);
         } else if (move.y > 0) {
-            camController.setAttackingTopGoal(false);
+          camController.setAttackingTopGoal(false);
         }
+      }
+    } else {
+      this.vel = this.vel.scale(0.9);
+      if (this.vel.size < 5) this.graphics.use(this.idleGraphic);
     }
-} else {
-    this.vel = this.vel.scale(0.9);
-    if (this.vel.size < 5) this.graphics.use(this.idleGraphic);
-}
    
   }
 

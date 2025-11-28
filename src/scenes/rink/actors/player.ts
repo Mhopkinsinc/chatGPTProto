@@ -1,6 +1,7 @@
 
 import * as ex from 'excalibur';
 import { Resources } from '../../../resources';
+import { getMovementVector } from './input_controller';
 
 export class PlayerActor extends ex.Actor {
 
@@ -60,20 +61,32 @@ export class PlayerActor extends ex.Actor {
       // Start with up direction animation
       this.graphics.use(runAnimUp);
 
-      // Example: switch direction (replace with your own logic)
-      this.on('preupdate', () => {
-        // Example: toggle direction every second (for demonstration)
-        // Replace with your own input or movement logic
-        const time = Number(this.scene?.engine.clock.now ?? 0);
-        if (Math.floor(time / 1000) % 2 === 0) {
-          if (this.currentDirection !== 'up') {
+      // Use keyboard input to move and animate player
+      this.on('preupdate', (evt) => {
+        const engine = this.scene?.engine;
+        if (!engine) return;
+        const move = getMovementVector(engine);
+        const speed = 120;
+
+        if (move.size > 0) {
+          this.vel = move.normalize().scale(speed);
+          // Switch animation based on vertical movement
+          if (move.y < 0 && this.currentDirection !== 'up') {
             this.graphics.use(runAnimUp);
             this.currentDirection = 'up';
-          }
-        } else {
-          if (this.currentDirection !== 'down') {
+          } else if (move.y > 0 && this.currentDirection !== 'down') {
             this.graphics.use(runAnimDown);
             this.currentDirection = 'down';
+          }
+        } else {
+          this.vel = this.vel.scale(0.8);
+          // Idle sprite based on last direction
+          if (this.vel.size < 5) {
+            if (this.currentDirection === 'up') {
+              this.graphics.use(this.idleSpriteUp);
+            } else {
+              this.graphics.use(this.idleSpriteDown);
+            }
           }
         }
       });
